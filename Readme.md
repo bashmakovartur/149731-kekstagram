@@ -1,7 +1,7 @@
-# Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
+﻿# Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Артур Башмаков](https://up.htmlacademy.ru/javascript/6/user/149731).
-* Наставник: `Неизвестно`.
+* Наставник: [Евгений Щепотьев] (https://htmlacademy.ru/profile/id125753).
 
 ---
 
