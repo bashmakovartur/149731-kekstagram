@@ -121,9 +121,9 @@
 
       this._ctx.beginPath();
       this._ctx.moveTo(displX, displY);
-      this._ctx.lineTo (displX + this._container.width, displY);
-      this._ctx.lineTo (displX + this._container.width, displY + this._container.height);
-      this._ctx.lineTo (displX, displY + this._container.height);
+      this._ctx.lineTo(displX + this._container.width, displY);
+      this._ctx.lineTo(displX + this._container.width, displY + this._container.height);
+      this._ctx.lineTo(displX, displY + this._container.height);
       this._ctx.lineTo(displX, displY);
       this._ctx.moveTo((-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
       (-this._resizeConstraint.side / 2) - this._ctx.lineWidth);
