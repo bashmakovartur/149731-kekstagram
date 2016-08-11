@@ -41,6 +41,17 @@
    */
   var currentResizer;
 
+  var x = document.querySelector('#resize-x');
+  var y = document.querySelector('#resize-y');
+  var size = document.querySelector('#resize-size');
+
+  x.min = 0;
+  y.min = 0;
+
+  // if (x + size > currentResizer._image.naturalWidth) {
+  //   x.
+  // }
+
   /**
    * Удаляет текущий объект {@link Resizer}, чтобы создать новый с другим
    * изображением.
@@ -72,8 +83,16 @@
    * @return {boolean}
    */
   function resizeFormIsValid() {
-    return true;
+    if ((x.value + size.value > currentResizer._image.naturalWidth) || (y.value + size.value > currentResizer._image.naturalHeight)) {
+      document.getElementById('resize-fwd').disabled = true;
+      return false;
+    } else if ((x.value < 0) || (y.value < 0)) {
+      return false;
+    } else {
+      return true;
+    }
   }
+
 
   /**
    * Форма загрузки изображения.
