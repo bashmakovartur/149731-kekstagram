@@ -47,10 +47,7 @@
 
   x.min = 0;
   y.min = 0;
-
-  // if (x + size > currentResizer._image.naturalWidth) {
-  //   x.
-  // }
+  size.min = 0;
 
   /**
    * Удаляет текущий объект {@link Resizer}, чтобы создать новый с другим
@@ -90,6 +87,22 @@
       return false;
     } else {
       return true;
+    }
+  }
+
+  x.onchange = function() {
+    if (resizeFormIsValid()) {
+      document.getElementById('resize-fwd').disabled = false;
+    }
+  }
+  y.onchange = function() {
+    if (resizeFormIsValid()) {
+      document.getElementById('resize-fwd').disabled = false;
+    }
+  }
+  size.onchange = function() {
+    if (resizeFormIsValid()) {
+      document.getElementById('resize-fwd').disabled = false;
     }
   }
 
