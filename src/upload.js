@@ -94,17 +94,17 @@
     if (resizeFormIsValid()) {
       document.getElementById('resize-fwd').disabled = false;
     }
-  }
+  };
   y.onchange = function() {
     if (resizeFormIsValid()) {
       document.getElementById('resize-fwd').disabled = false;
     }
-  }
+  };
   size.onchange = function() {
     if (resizeFormIsValid()) {
       document.getElementById('resize-fwd').disabled = false;
     }
-  }
+  };
 
 
   /**
