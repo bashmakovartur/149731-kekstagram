@@ -81,7 +81,7 @@
    * @return {boolean}
    */
   function resizeFormIsValid() {
-    if ((x.value + size.value > currentResizer._image.naturalWidth) || (y.value + size.value > currentResizer._image.naturalHeight) || (x.value < 0) || (y.value < 0)) {
+    if ((+x.value + +size.value > +currentResizer._image.naturalWidth) || (+y.value + +size.value > +currentResizer._image.naturalHeight) || (x.value < 0) || (y.value < 0)) {
       fwd.disabled = true;
       return false;
     }	else {
@@ -90,15 +90,9 @@
     }
   }
 
-  x.oninput = function() {
-    resizeFormIsValid();
-  };
-  y.oninput = function() {
-    resizeFormIsValid();
-  };
-  size.oninput = function() {
-    resizeFormIsValid();
-  };
+  x.oninput = resizeFormIsValid;
+  y.oninput = resizeFormIsValid;
+  size.oninput = resizeFormIsValid;
 
   /**
    * Форма загрузки изображения.
