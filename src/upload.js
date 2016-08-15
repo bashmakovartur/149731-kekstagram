@@ -44,7 +44,7 @@
   var x = document.querySelector('#resize-x');
   var y = document.querySelector('#resize-y');
   var size = document.querySelector('#resize-size');
-	var fwd = document.getElementById('resize-fwd');
+  var fwd = document.getElementById('resize-fwd');
 
   x.min = 0;
   y.min = 0;
@@ -85,7 +85,7 @@
       fwd.disabled = true;
       return false;
     }	else {
-			fwd.disabled = false;
+      fwd.disabled = false;
       return true;
     }
   }
@@ -93,11 +93,9 @@
   x.oninput = function() {
     resizeFormIsValid();
   };
-	
   y.oninput = function() {
     resizeFormIsValid();
   };
-	
   size.oninput = function() {
     resizeFormIsValid();
   };
