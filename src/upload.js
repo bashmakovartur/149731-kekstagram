@@ -243,7 +243,35 @@
    * записав сохраненный фильтр в cookie.
    * @param {Event} evt
    */
+	
+	var browseCookies = require('browser-cookies');
+	var origin = document.querySelector('#upload-filter-none');
+	var chrome = document.querySelector('#upload-filter-chrome');
+	var sepia = document.querySelector('#upload-filter-sepia');
+	var marvin = document.querySelector('#upload-filter-marvin');
+	var uploadFilter = document.querySelector('#upload-filter');
+	var selectInput = null;
+	
+	origin.onclick = function() {
+		selectInput = origin;
+	}
+	
+	chrome.onclick = function() {
+		selectInput = chrome;
+	}
+	
+	sepia.onclick = function() {
+		selectInput = sepia;
+	}
+	
+	marvin.onclick = function() {
+		selectInput = marvin;
+	}
+	
   filterForm.onsubmit = function(evt) {
+		
+		document.cookie = 'upload-filter=' + selectInput + ';expires=' + new Date();
+		
     evt.preventDefault();
 
     cleanupResizer();
@@ -252,6 +280,7 @@
     filterForm.classList.add('invisible');
     uploadForm.classList.remove('invisible');
   };
+	
 
   /**
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
