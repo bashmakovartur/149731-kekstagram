@@ -111,6 +111,8 @@
    * @type {HTMLFormElement}
    */
   var filterForm = document.forms['upload-filter'];
+  var browseCookies = require('browser-cookies');
+  var selectInputs = filterForm['upload-filter'];
 
   /**
    * @type {HTMLImageElement}
@@ -209,6 +211,7 @@
    * кропнутое изображение в форму добавления фильтра и показывает ее.
    * @param {Event} evt
    */
+
   resizeForm.onsubmit = function(evt) {
     evt.preventDefault();
 
@@ -216,6 +219,7 @@
       var image = currentResizer.exportImage().src;
 
       var thumbnails = filterForm.querySelectorAll('.upload-filter-preview');
+
       for (var i = 0; i < thumbnails.length; i++) {
         thumbnails[i].style.backgroundImage = 'url(' + image + ')';
       }
@@ -223,6 +227,11 @@
       filterImage.src = image;
 
       resizeForm.classList.add('invisible');
+
+      if (browseCookies.get('upload-filter')) {
+        document.querySelector('[value=' + browseCookies.get('upload-filter') + ']').click();
+      }
+
       filterForm.classList.remove('invisible');
     }
   };
@@ -243,35 +252,33 @@
    * записав сохраненный фильтр в cookie.
    * @param {Event} evt
    */
-	
-	var browseCookies = require('browser-cookies');
-	var origin = document.querySelector('#upload-filter-none');
-	var chrome = document.querySelector('#upload-filter-chrome');
-	var sepia = document.querySelector('#upload-filter-sepia');
-	var marvin = document.querySelector('#upload-filter-marvin');
-	var uploadFilter = document.querySelector('#upload-filter');
-	var selectInput = null;
-	
-	origin.onclick = function() {
-		selectInput = origin;
-	}
-	
-	chrome.onclick = function() {
-		selectInput = chrome;
-	}
-	
-	sepia.onclick = function() {
-		selectInput = sepia;
-	}
-	
-	marvin.onclick = function() {
-		selectInput = marvin;
-	}
-	
+
+  function getBirthday() {
+
+    var now = new Date();
+    var nowYear = now.getFullYear();
+    var nowMilisec = now.getTime();
+    var babkaTime = new Date(nowYear, 11, 9);
+    var babkaMilisec = babkaTime.getTime();
+
+    if(nowMilisec < babkaMilisec) {
+      babkaTime = new Date(nowYear - 1, 11, 9);
+      babkaMilisec = babkaTime.getTime();
+    }
+
+    var difference = nowMilisec - babkaMilisec;
+    var days = difference / 1000 / 60 / 60 / 24;
+    return days.toFixed();
+  }
+
   filterForm.onsubmit = function(evt) {
-		
-		document.cookie = 'upload-filter=' + selectInput + ';expires=' + new Date();
-		
+
+    for (var i = 0; i < selectInputs.length; i++) {
+      if (selectInputs[i].checked) {
+        browseCookies.set('upload-filter', selectInputs[i].value, {expires: +getBirthday()});
+      }
+    }
+
     evt.preventDefault();
 
     cleanupResizer();
@@ -280,7 +287,7 @@
     filterForm.classList.add('invisible');
     uploadForm.classList.remove('invisible');
   };
-	
+
 
   /**
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
