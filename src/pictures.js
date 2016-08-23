@@ -1,13 +1,18 @@
 'use strict';
 
 var pictures = [];
-function requestJSONP(address, JSONPCallBack) {
+var requestJSONP = function(address, fun) {
   var teg = document.createElement('script');
-  teg.src = address;
+  var name = 'render';
+  teg.src = address + '?callback=' + name;
   document.body.appendChild(teg);
-  window.JSONPCallBack = function(date) {
-    pictures = date;
+  window[name] = function(date) {
+    fun(date);
   };
-}
+};
 
-requestJSONP('http://localhost:1506/api/pictures?callback=window.JSONPCallBack');
+var callBack = function(date) {
+  pictures = date;
+};
+
+requestJSONP('http://localhost:1506/api/pictures', callBack);
