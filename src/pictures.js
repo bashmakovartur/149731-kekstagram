@@ -53,6 +53,8 @@ var getPictureElement = function(date, container) {
 
 };
 
+filtersBlock.classList.remove('hidden');
+
 var callBack = function(date) {
   pictures = date;
   pictures.forEach(function(picture) {
@@ -61,7 +63,3 @@ var callBack = function(date) {
 };
 
 requestJSONP('http://localhost:1506/api/pictures', callBack);
-
-
-
-filtersBlock.classList.remove('hidden');
