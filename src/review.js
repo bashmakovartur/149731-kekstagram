@@ -1,7 +1,5 @@
 'use strict';
 
-var filtersBlock = document.querySelector('.filters');
-filtersBlock.classList.add('hidden');
 var templateElement = document.querySelector('template');
 var elementToClone;
 var IMAGE_LOAD_TIMEOUT = 10000;

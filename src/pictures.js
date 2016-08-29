@@ -1,12 +1,13 @@
 'use strict';
 
-var pictures = [];
-var picturesContainer = document.querySelector('.pictures');
-var filtersBlock = document.querySelector('.filters');
-
 var load = require('./load');
 
 var getPictureElement = require('./review');
+
+var pictures = [];
+var picturesContainer = document.querySelector('.pictures');
+var filtersBlock = document.querySelector('.filters');
+filtersBlock.classList.add('hidden');
 
 var callBack = function(date) {
   pictures = date;
