@@ -1,6 +1,5 @@
 'use strict';
 
-// var picturesContainer = document.querySelector('.pictures');
 var filtersBlock = document.querySelector('.filters');
 filtersBlock.classList.add('hidden');
 var templateElement = document.querySelector('template');
